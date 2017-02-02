@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Main function #
+main() {
+
+# Get desktop window hex ID
+desktop_ID_hex="$(xwininfo -root -tree | grep -m1 -e '"Desktop":' | grep -o '0x1[^ ]*')"
+
+# Convert desktop hex ID to decimal.
+desktop_ID_decimal="$(printf %i $desktop_ID_hex)"
+
+# For loop will minimize windows recursively
+# until if statement matches desktop ID.
+for i in {1..99}; do
+
+# If statement checks if active window ID is desktop. Exits if so.
+if [ "$(xdotool getactivewindow)" == "$desktop_ID_decimal" ]; then
+   exit 0
+fi
+
+   # xdotool checks for active window and minimizes it.
+   xdotool getactivewindow windowminimize && wait
+   sleep 0.01
+
+done
+}
+
+# Call main function
+main
