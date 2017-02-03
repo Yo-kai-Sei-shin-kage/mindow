@@ -1,6 +1,10 @@
 # mindow
 mindow minimizes all opened windows to show the desktop.
 
+# Dependencies
+1.) xdotool
+2.) xwininfo
+
 # Installation
 1.) Save mindow file to "/usr/bin" directory.
 2.) chmod +x mindow
